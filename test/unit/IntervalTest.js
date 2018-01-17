@@ -1,4 +1,4 @@
-/*describe("Interval - overlapping", function () {
+describe("Interval - overlapping", function () {
     testedInterval = new Interval(10, 20);
 
     [
@@ -23,4 +23,16 @@
             expect(testedInterval.overlaps(interval)).toBeFalsy();
         });
     });
-});*/
+});
+
+describe("nouveau test",function(){
+	it("Resultat doit être 10",function(){
+		var a = 5;
+		var b = 5;
+		var res = a + b;
+		expect(res).toEqual(10);
+		
+	});
+});
+
+
