@@ -80,22 +80,3 @@ Interval.prototype.intersection = function (interval) {
 Interval.prototype.exclusion = function (interval) {
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
