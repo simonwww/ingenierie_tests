@@ -13,6 +13,10 @@ describe("Util - Factorial", function() {
             factorial : 2
         },
         {
+            n : 3,
+            factorial : 6
+        },
+        {
             n : 4,
             factorial : 24
         },     
@@ -28,7 +32,11 @@ describe("Util - Factorial", function() {
 
 describe("Util - Arrangement", function() {
     var testCases = [
-
+        {
+			r : 0,
+            n : 0,
+			arrangement : -9999
+        },
         {
 			r : 0,
             n : 1,
@@ -64,6 +72,11 @@ describe("Util - Combination", function() {
         {
 			r : 0,
             n : 0,
+			combination : 1
+        },
+        {
+			r : 0,
+            n : 1,
 			combination : 1
         },
         {
@@ -105,10 +118,17 @@ describe("IsPrime", function(){
             isPrime : false
         },
         {
+            n : 7,
+            isPrime : true
+        },
+        {
             n : 16,
             isPrime : false
         },
-
+        {
+            n : 31,
+            isPrime : true
+        }
     ];
 
     testCases.forEach(function(testCase) {
@@ -121,6 +141,10 @@ describe("IsPrime", function(){
 
 describe("SumPrime", function(){
     var testCases = [
+		{
+            n : 1,
+            sumPrime : -9999
+        },
         {
             n : 4,
             sumPrime : 5
@@ -137,6 +161,10 @@ describe("SumPrime", function(){
             n : 20,
             sumPrime : 77
         },
+        {
+            n : 35,
+            sumPrime : 160
+        }
     ];
 	
 	testCases.forEach(function(testCase) {
@@ -149,7 +177,7 @@ describe("SumPrime", function(){
 
 describe("FizzBuzz", function(){
 
-    var tab = [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz"];
+    var tab = [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"];
     it("should returns " + tab + " when n = 15", function() {
         var result = Util.fizzBuzz(15);
         expect(result).toEqual(tab);
@@ -159,12 +187,16 @@ describe("FizzBuzz", function(){
 describe("Cipher", function(){
     var testCases = [
 		{
-            phrase : "Unitaire",
-            cipher : "Vojubjsf"
+            phrase : "Test Unitaire",
+            cipher : "Uftu!Vojubjsf"
         },
         {
-            phrase : "france",
-            cipher : "gsbodf"
+            phrase : "école ensiie",
+            cipher : "êdpmf!fotjjf"
+        },
+        {
+            phrase : "la france",
+            cipher : "mb!gsbodf"
         }
     ];
 	
