@@ -1,4 +1,4 @@
-describe("Factorial", function(){
+describe("Util - Factorial", function() {
     var testCases = [
         {
             n : 0,
@@ -19,36 +19,14 @@ describe("Factorial", function(){
         {
             n : 4,
             factorial : 24
-        }
+        },     
     ];
-
-    testCases.forEach(function(testCase){
-        it("should returns " + testCase.factorial + " when n = " + testCase.n, function(){
+   
+    testCases.forEach(function(testCase) {
+        it("should returns " + testCase.factorial + " when n = " + testCase.n, function() {
             var result = Util.factorial(testCase.n);
             expect(result).toEqual(testCase.factorial);
         })
-    });
-
-
-    it("should raise an exception when n < 0", function(){
-        var f = function(){
-            Util.factorial(-1);
-        }
-        expect(f).toThrow('Unable to compute factorial for n < 0');
-    });
-
-    it("should raise an exception when n is not an integer", function(){
-        var f = function(){
-            Util.factorial('test');
-        }
-        expect(f).toThrow('Unable to compute factorial of non integer values');
-    })
-
-    it("should raise an exception for n > 100", function(){
-        var f = function(){
-            Util.factorial(101);
-        }
-        expect(f).toThrow('Unable to compute factorial for n > 100');
     })
 });
 
@@ -133,114 +111,96 @@ describe("IsPrime", function(){
     var testCases = [
         {
             n : 0,
-            prime : true
+            isPrime : false
+        },
+		{
+            n : 4,
+            isPrime : false
         },
         {
-            n : 5,
-            prime : false
+            n : 7,
+            isPrime : true
         },
         {
-            n : 10,
-            prime : true
+            n : 16,
+            isPrime : false
         },
         {
-            n : 15,
-            prime : true
-        },
-        {
-            n : 20,
-            prime : false
+            n : 31,
+            isPrime : true
         }
     ];
 
-    testCases.forEach(function(testCase){
-        it("should returns " + testCase.prime + " when n = " + testCase.n, function(){
+    testCases.forEach(function(testCase) {
+        it("should returns " + testCase.isPrime + " when n = " + testCase.n, function() {
             var result = Util.isPrime(testCase.n);
-            expect(result).toEqual(testCase.prime);
+            expect(result).toEqual(testCase.isPrime);
         })
-
     })
 });
 
 describe("SumPrime", function(){
     var testCases = [
-        {
-            n : 0,
-            smprime : 0
+		{
+            n : 1,
+            sumPrime : -9999
         },
         {
-            n : 5,
-            smprime : 12
+            n : 4,
+            sumPrime : 5
         },
         {
-            n : 10,
-            smprime : 24
+            n : 12,
+            sumPrime : 28
         },
         {
-            n : 15,
-            smprime : 50
+            n : 16,
+            sumPrime : 41
         },
         {
             n : 20,
-            smprime : 57
-        },
-        {
-            n : 25,
-            smprime : 45
-        },
-        {
-            n : 30,
-            smprime : 60
+            sumPrime : 77
         },
         {
             n : 35,
-            smprime : 180
+            sumPrime : 160
         }
     ];
-
-    testCases.forEach(function(testCase){
-        it("should returns " + testCase.smprime + " when n = " + testCase.n, function(){
+	
+	testCases.forEach(function(testCase) {
+        it("should returns " + testCase.sumPrime + " when n = " + testCase.n, function() {
             var result = Util.sumPrime(testCase.n);
-            expect(result).toEqual(testCase.smprime);
+            expect(result).toEqual(testCase.sumPrime);
         })
-
     })
 });
 
 describe("FizzBuzz", function(){
-    var testCases = [
-        {
-            n : 15,
-            fb : [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"]
-        }
-    ];
 
-    testCases.forEach(function(testCase){
-        it("should returns " + testCase.fb + " when n = " + testCase.n, function(){
-            var result = Util.fizzBuzz(testCase.n);
-            expect(result).toEqual(testCase.fb);
-        })
-
-    })
+    var tab = [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"];
+    it("should returns " + tab + " when n = 15", function() {
+        var result = Util.fizzBuzz(15);
+        expect(result).toEqual(tab);
+    });
 });
 
 describe("Cipher", function(){
     var testCases = [
-        {
-            text : "Test Unitaire",
-            res : "Uftu Vojubjsf"
+		{
+            phrase : "Test Unitaire",
+            cipher : "Uftu!Vojubjsf"
         },
+
         {
-            phrase : "un fils",
-            cipher : "vo gjmt"
+            phrase : "france",
+            cipher : "gsbodf"
         }
     ];
-
-    testCases.forEach(function(testCase){
-        it("should returns " + testCase.res + " when text = " + testCase.text, function(){
-            var result = Util.cipher(testCase.text);
-            expect(result).toEqual(testCase.res);
+	
+	testCases.forEach(function(testCase) {
+        it("should returns " + testCase.cipher + " when phrase = " + testCase.phrase, function() {
+            var result = Util.cipher(testCase.phrase);
+            expect(result).toEqual(testCase.cipher);
         })
-
     })
 });
