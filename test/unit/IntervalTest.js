@@ -25,16 +25,6 @@ describe("Interval - overlapping", function () {
     });
 });
 
-describe("nouveau test",function(){
-	it("Resultat doit être 10",function(){
-		var a = 5;
-		var b = 5;
-		var res = a + b;
-		expect(res).toEqual(10);
-		
-	});
-});
-
 describe("Interval - including", function () {
     testedInterval = new Interval(10, 20);
 
@@ -70,31 +60,28 @@ describe("Interval - union", function () {
 			interval : new Interval(8, 12),
 			result : new Interval(8,20)
 		},
-		
-		{
-			interval : new Interval(8, 9),
-			result : [testedInterval, new Interval(8,20)]
-		},
 		{
 			interval : new Interval(17, 22),
 			result : new Interval(10,22)
 		},
-		
 		{
-			interval : new Interval(21, 22),
-			result : [testedInterval, new Interval(10,22)]
+			interval : new Interval(8, 9),
+			result : [new Interval(8,9), testedInterval]
 		},
 		{
 			interval : new Interval(8, 21),
 			result : new Interval(8,21)
 		},
-		
 		{
-			interval : new Interval(12, 19),
-			result : new Interval(10,20)
+			interval : new Interval(21, 22),
+			result : [testedInterval, new Interval(21,22)]
 		},
 		{
 			interval : new Interval(15, 16),
+			result : new Interval(10,20)
+		},
+		{
+			interval : new Interval(12, 19),
 			result : new Interval(10,20)
 		},
 		{
@@ -102,10 +89,19 @@ describe("Interval - union", function () {
 			result : new Interval(10,20)
 		}
     ].forEach(function (interval) {
-        it("should returns Interval[" + interval.result.start + ", " + interval.result.end + "] when doing union of " + testedInterval.toString() + " and " + interval.interval.toString(), function () {
+		var msg = "";
+		if (typeof interval.result.start !== 'undefined')
+			msg = "should returns Interval[" + interval.result.start + ", " + interval.result.end + "] when doing union of " + testedInterval.toString() + " and " + interval.interval.toString();
+		else
+			msg = "should returns Interval(" + interval.result + ") when doing union of " + testedInterval.toString() + " and " + interval.interval.toString();
+        it(msg, function () {
             var result = testedInterval.union(interval.interval);
-			expect(result.start).toEqual(interval.result.start);
-			expect(result.end).toEqual(interval.result.end);
+			if (typeof interval.result.start !== 'undefined') {
+				expect(result.start).toEqual(interval.result.start);
+				expect(result.end).toEqual(interval.result.end);
+			} else
+				expect(result).toEqual(interval.result);
+			
         });
     });
 });
@@ -122,27 +118,25 @@ describe("Interval - intersection", function () {
 			interval : new Interval(17, 22),
 			result : new Interval(17,20)
 		},
-		
-		{
-			interval : new Interval(8, 21),
-			result : new Interval(10,20)
-		},
 		{
 			interval : new Interval(8, 9),
 			result : null
 		},
 		{
+			interval : new Interval(8, 21),
+			result : new Interval(10,20)
+		},
+		{
 			interval : new Interval(21, 22),
 			result : null
-		},
-		
-		{
-			interval : new Interval(12, 19),
-			result : new Interval(12,19)
 		},
 		{
 			interval : new Interval(15, 16),
 			result : new Interval(15,16)
+		},
+		{
+			interval : new Interval(12, 19),
+			result : new Interval(12,19)
 		},
 		{
 			interval : new Interval(10, 20),
@@ -200,5 +194,3 @@ describe("Interval - exclusion", function () {
         });
     });
 });
-
-
